@@ -1,0 +1,49 @@
+import { Routes, Route, NavLink } from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
+import Community from './components/Community';
+import Feeds from './components/posts/Feeds';
+import Feed from './components/posts/Feed';
+import Medias from './components/posts/Medias';
+
+import 'sanitize.css';
+import './App.scss';
+
+function App() {
+  return (
+    <div className="App">
+      <header className="menu">
+        <ul>
+          <li>
+            <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/community" className={({ isActive }) => isActive ? 'active' : ''}>
+              Community
+            </NavLink>
+          </li>
+        </ul>
+      </header>
+      <main className="contents">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/community" element={<Community />}>
+            <Route path="feeds" element={<Feeds />} />
+            <Route path="feeds/:id" element={<Feed />} />
+            <Route path="media" element={<Medias />} /> 
+          </Route>
+        </Routes>
+      </main>
+    </div>
+  );
+}
+
+export default App;
