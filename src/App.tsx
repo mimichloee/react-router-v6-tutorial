@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import Community from './components/Community';
@@ -6,7 +6,6 @@ import Feeds from './components/posts/Feeds';
 import Feed from './components/posts/Feed';
 import Medias from './components/posts/Medias';
 
-import 'sanitize.css';
 import './App.scss';
 
 function App() {
@@ -36,6 +35,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/community" element={<Community />}>
+            <Route path="" element={<Navigate replace to="feeds" />} />
             <Route path="feeds" element={<Feeds />} />
             <Route path="feeds/:id" element={<Feed />} />
             <Route path="media" element={<Medias />} /> 
