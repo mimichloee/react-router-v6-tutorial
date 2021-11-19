@@ -5,6 +5,7 @@ import Community from './components/Community';
 import Feeds from './components/posts/Feeds';
 import Feed from './components/posts/Feed';
 import Medias from './components/posts/Medias';
+import ErrorBoundary from './ErrorBoundary';
 
 import './App.scss';
 
@@ -32,8 +33,22 @@ function App() {
       </header>
       <main className="contents">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route
+            path="/"
+            element={
+              <ErrorBoundary key="1">
+                <Home />
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <ErrorBoundary key="2">
+                <About />
+              </ErrorBoundary>
+            }
+          />
           <Route path="/community" element={<Community />}>
             <Route path="" element={<Navigate replace to="feeds" />} />
             <Route path="feeds" element={<Feeds />} />
